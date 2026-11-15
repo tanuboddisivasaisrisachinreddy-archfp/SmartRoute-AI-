@@ -1,0 +1,57 @@
+[
+  {
+    "check": "graph is real OSM data (not synthetic)",
+    "passed": true,
+    "detail": "OpenStreetMap (ODbL 1.0) via OSMnx"
+  },
+  {
+    "check": "graph has > 1000 intersections",
+    "passed": true,
+    "detail": "3124 nodes, 5493 edges"
+  },
+  {
+    "check": "all nodes inside Hyderabad bbox",
+    "passed": true,
+    "detail": "1.0000"
+  },
+  {
+    "check": "no NaN coordinates",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "check": "positive edge lengths",
+    "passed": true,
+    "detail": "min 1.08 m"
+  },
+  {
+    "check": "positive speeds",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "check": "geometry for every edge",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "check": "strongly connected",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "check": "landmarks snap within 1.5 km of a road intersection",
+    "passed": true,
+    "detail": "worst: Begumpet 432.2 m"
+  },
+  {
+    "check": "19 required landmarks present",
+    "passed": true,
+    "detail": "19"
+  },
+  {
+    "check": "METR-LA labelled as non-Hyderabad",
+    "passed": true,
+    "detail": "Los Angeles County, USA"
+  }
+]

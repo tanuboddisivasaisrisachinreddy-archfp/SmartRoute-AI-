@@ -1,0 +1,29 @@
+{
+  "nodes": 3124,
+  "edges": 5493,
+  "total_km": 1767.0,
+  "edges_by_class": {
+    "trunk": 1183,
+    "secondary": 2281,
+    "primary": 1908,
+    "motorway": 121
+  },
+  "km_by_class": {
+    "motorway": 101.3,
+    "trunk": 317.9,
+    "primary": 472.4,
+    "secondary": 875.4,
+    "tertiary": 0.0,
+    "other": 0.0
+  },
+  "oneway_share": 0.726,
+  "mean_out_degree": 1.758,
+  "max_out_degree": 4,
+  "bounds": {
+    "south": 17.2104343,
+    "north": 17.5398738,
+    "west": 78.2996223,
+    "east": 78.5906518
+  },
+  "signature": "d9e52af291a3"
+}

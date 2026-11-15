@@ -1,0 +1,12 @@
+# Runtime dependencies of the FastAPI backend (Render web service).
+# DQN inference uses NumPy with weights exported from PyTorch, so torch is
+# NOT required to serve routes. Install requirements-ml.txt to train.
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+networkx>=3.3
+numpy>=1.26
+pandas>=2.2
+scikit-learn>=1.5
+requests>=2.32
+pymongo>=4.8

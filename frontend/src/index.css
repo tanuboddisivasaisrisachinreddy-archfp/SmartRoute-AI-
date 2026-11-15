@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "IBM Plex Sans", ui-sans-serif, sans-serif;
+
+  /* Deccan granite slate + turmeric accent */
+  --color-granite-50: #f2f4f3;
+  --color-granite-100: #e3e8e7;
+  --color-granite-200: #c9d2d1;
+  --color-granite-300: #a3b1b1;
+  --color-granite-400: #748687;
+  --color-granite-500: #566a6d;
+  --color-granite-600: #435559;
+  --color-granite-700: #34454a;
+  --color-granite-800: #24353c;
+  --color-granite-900: #1a2a31;
+  --color-granite-950: #132026;
+
+  --color-turmeric-300: #f4cf72;
+  --color-turmeric-400: #ecb83c;
+  --color-turmeric-500: #e3a21a;
+  --color-turmeric-600: #b97d0c;
+  --color-turmeric-700: #8c5d0b;
+
+  --color-dijkstra: #2563eb;
+  --color-qlearn: #16a34a;
+  --color-dqn: #9333ea;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-granite-50 text-granite-900 antialiased dark:bg-granite-950 dark:text-granite-100;
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum" 1;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-turmeric-500);
+  outline-offset: 2px;
+}
+
+.leaflet-container {
+  font-family: var(--font-sans);
+  background: #dfe5e4;
+}
+.dark .leaflet-container {
+  background: #1a2a31;
+}
+.dark .leaflet-tile-pane {
+  filter: brightness(0.78) saturate(0.7) contrast(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes route-draw {
+  from {
+    stroke-dashoffset: 2400;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.route-draw {
+  stroke-dasharray: 2400;
+  animation: route-draw 1.1s ease-out forwards;
+}
