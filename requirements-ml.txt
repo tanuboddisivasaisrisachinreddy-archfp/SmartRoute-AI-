@@ -1,0 +1,5 @@
+# Data download / preprocessing and model training (run on your Mac).
+# PyTorch: on macOS the default wheel from PyPI is fine (CPU / Apple MPS).
+osmnx>=2.0
+torch>=2.3
+tables>=3.9        # read METR-LA / PEMS-BAY .h5 files

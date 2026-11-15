@@ -1,0 +1,60 @@
+# Render Blueprint – https://render.com/docs/blueprint-spec
+# Deploy: Render dashboard -> New -> Blueprint -> select this repository.
+services:
+  - type: web
+    name: smartroute-api
+    runtime: python
+    plan: free
+    region: singapore
+    branch: main
+    buildCommand: pip install -r backend/requirements.txt && python scripts/bootstrap_deploy.py
+    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT --proxy-headers
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: ENVIRONMENT
+        value: production
+      - key: FRONTEND_ORIGIN
+        value: https://smartroute-ai.onrender.com
+      - key: MONGODB_URI
+        sync: false            # set in the dashboard (MongoDB Atlas connection string)
+      - key: MONGODB_DB
+        value: smartroute
+      - key: TOMTOM_API_KEY
+        sync: false            # optional – leave empty for simulated traffic
+      - key: ARTIFACTS_URL
+        sync: false            # GitHub Release URL of smartroute-artifacts.tar.gz
+      - key: BOOTSTRAP_FROM_OSM
+        value: "false"
+      - key: MODEL_CHECKPOINT_DIR
+        value: reinforcement_learning/checkpoints
+      - key: ENABLE_SERVER_TRAINING
+        value: "true"
+      - key: MAX_TRAINING_EPISODES_QL
+        value: "400"
+      - key: MAX_TRAINING_EPISODES_DQN
+        value: "300"
+      - key: QL_ONDEMAND_EPISODES
+        value: "400"
+      - key: CONTACT_EMAIL
+        sync: false            # used in the Nominatim User-Agent (OSM usage policy)
+
+  - type: web
+    name: smartroute-ai
+    runtime: static
+    branch: main
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://smartroute-api.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
